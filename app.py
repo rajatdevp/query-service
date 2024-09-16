@@ -1,11 +1,14 @@
 from flask import Flask
-
+from models import db
+from routes import app as routes_blueprint
+from config import Config
 app = Flask(__name__)
+app.config.from_object(Config)
 
+#db.init_app(app)
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+app.register_blueprint(routes_blueprint)
+
 
 
 if __name__ == '__main__':
